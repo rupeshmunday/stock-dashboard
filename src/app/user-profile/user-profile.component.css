@@ -1,0 +1,51 @@
+h1 {
+    color: seagreen;
+}
+.myStocks:hover {
+    background-color : blueviolet;
+    color: #fff;
+    height: 55px;
+    width: 140px;
+}
+.myStocks {
+    background-color : steelblue;
+    color: #fff;
+    height: 35px;
+    width: 120px;
+}
+.userInfo {
+    background-color: steelblue;
+    color: white;
+    height: 35px;
+    width: 120px;
+}
+.userInfo:hover {
+    background-color: blueviolet;
+    color: white;
+    height: 55px;
+    width: 140px;
+}
+.buyMoreStocks:hover{
+    background-color: blueviolet;
+    color: white;
+    height: 55px;
+    width: 140px;
+}
+.buyMoreStocks{
+    background-color: steelblue;
+    color: white;
+    height: 35px;
+    width: 120px;
+}
+.sellStocks {
+    background-color: steelblue;
+    color: white;
+    height: 35px;
+    width: 120px;
+}
+.sellStocks:hover {
+    background-color: blueviolet;
+    color: white;
+    height: 55px;
+    width: 140px;
+}

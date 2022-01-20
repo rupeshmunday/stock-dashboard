@@ -1,0 +1,68 @@
+.stock-center {
+    color : #fff;
+    text-align: center;
+    background-color: rgb(105, 77, 206);
+    margin-top: 30px;
+    margin-right: 250px;
+    margin-left: 250px;
+    height: 30px;
+}
+.container {
+    max-height: max-content;
+    text-align: center;
+    border: gray;
+    border-width: 5px;
+    border-style: solid;
+}
+.Email-login {
+    margin-top: 20px;
+    margin-bottom: 1px;
+    border-style: solid;
+    border-radius: 20px;
+    height: 30px;
+    width: 200px;
+}
+.Password-login {
+    margin-bottom:0.5px;
+    border-radius: 20px;
+    border-style: solid;
+    height: 30px;
+    width: 200px;
+}
+.LogIn-btn {
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border-style: solid;
+    text-decoration: gray;
+    height: 30px;
+    width: 200px;
+    background-color: #2827CC;
+    color: whitesmoke;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    
+  }
+li {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    margin-bottom: 20px;
+}
+.search{
+    text-align: end;
+    margin-top: 0px;
+    height: 20px;
+}
+.search-stock{
+    height: 20px;
+}
+
+li a:hover {
+    background-color:  #6F00ED;
+  }

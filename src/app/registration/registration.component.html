@@ -1,11 +1,126 @@
 <div class="container">
-    <form action="/register" method="post">
-        <input type="text" name="First_Name" class="first-name" placeholder="Enter First Name"><br>
-        <input type="text" name="Last_Name" class="name" placeholder="Enter Last Name"><br>
-        <input type="tel" name="Mobile-no." class="number" placeholder="Enter your phone no."><br>
-        <input type="email" name="email" class="email-registration" placeholder="Enter your email"><br>
-        <input type="password" name="password" class="Password-registration" placeholder="Enter your password"><br>
-        <input type="button" value="Register" name="registration" class="registration-btn" placeholder="register">
-
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <input formControlName="firstName" type="text"  name="First_Name" class="first-name" placeholder="Enter First Name"><br>
+        <div class="text-warning">
+              <div>
+                First Name is required
+              </div>
+        </div>
+        <input formControlName="lastName" type="text" name="Last_Name" class="name" placeholder="Enter Last Name"><br>
+        <div class="text-warning">
+              <div>
+                Last Name is required
+              </div>
+        </div>
+        <input formControlName="mobNo" type="tel" name="Mobile-no." class="number" placeholder="Enter your phone no."><br>
+        <div class="text-warning">
+              <div>
+                Mobile number is required
+              </div>
+        </div>
+        <input formControlName="email"type="email" #myname name="email" class="email-registration" placeholder="Enter your email"><br>
+        <div class="text-warning">
+              <div>
+                email is required
+              </div>
+        </div>
+        <input formControlName="password" type="password" #myname name="password" class="Password-registration" placeholder="Enter your password"><br>
+        <div class="text-warning">
+              <div>
+                Password is required
+              </div>
+        </div>
+        <input type="submit"  value="Register" name="registration" class="registration-btn" placeholder="register">
+        <p class="text-white">Value: {{ registerForm.value | json }}</p>
+        <p class="text-white">Value: {{ registerForm.valid | json }}</p>
     </form>
 </div>
+<!-- <div class="container">
+    <div class="card bg-dark text-white m-3 mt-5">
+      <h5 class="card-header text-center">
+        Signup Form
+      </h5>
+      <div class="card-body">
+        <form [formGroup]="registerForm" >
+          <div class="form-row">
+            <div class="form-group col-6">
+              <label>First Name</label>
+              <input type="text" class="form-control" />
+              <div class="text-warning">
+                <div>
+                  First Name is required
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-6">
+              <label>Last Name</label>
+              <input type="text" class="form-control" />
+              <div class="text-warning">
+                <div>
+                  Last Name is required
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="text" class="form-control" />
+            <div class="text-warning">
+              <div>Email is required</div>
+              <div>
+                Email must be a valid email address
+              </div>
+            </div>
+          </div>
+  
+          <ng-container>
+            <div class="text-danger">
+              Value is required.
+            </div>
+          </ng-container>
+          <div class="form-row">
+            <div class="form-group col">
+              <label>Password</label>
+              <input type="password" class="form-control" />
+              <div class="text-warning">
+                <div>Password is required</div>
+                <div>
+                  Password must be at least 6 characters
+                </div>
+              </div>
+            </div>
+            <div class="form-group col">
+              <label>Confirm Password</label>
+              <input type="password" class="form-control" />
+              <div class="text-warning">
+                <div>
+                  Confirm Password is required
+                </div>
+                <div>
+                  Passwords must match
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group form-check">
+            <input type="checkbox" id="acceptTerms" class="form-check-input" />
+            <label for="acceptTerms" class="form-check-label"
+              >Accept Terms & Conditions</label
+            >
+            <div class="text-warning">
+              Accept Ts & Cs is required
+            </div>
+          </div>
+          <div class="text-center">
+            <button class="btn btn-success btn-lg px-4 mr-3">Register</button>
+            <button class="btn btn-warning" type="reset">
+              Reset
+            </button>
+            <p class="text white">Value: {{ registerForm.value | json }}</p>
+            <p class="text white">Value: {{ registerForm.valid | json }}</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+   -->

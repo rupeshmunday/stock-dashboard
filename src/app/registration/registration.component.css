@@ -52,3 +52,9 @@
     height: 30px;
     width: 200px;
 }
+.text-warning {
+    color: yellow;
+}
+.text-white {
+    color:white;
+}

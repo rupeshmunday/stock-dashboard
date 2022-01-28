@@ -5,15 +5,20 @@
     <a href="#"> Home </a>  
     </li>  
     <li>  
-    <a href="#"> Login </a>  
+    <a routerLink="/login" routerLinkActive="active"> Login </a>  
     </li>  
     <li>  
-    <a href="#"> Registration </a>  
+    <a routerLink="/register" routerLinkActive="active"> Registration </a>  
     </li>  
     </ul>  
     <div class="search">
-      <input type="text" name="Search" class="search-stock" placeholder="search stocks">
-      <input type="button" value="Search" placeholder="Search">
+      <form [formGroup]="stockForm" (ngSubmit)="onSubmit()">
+        <input formControlName="search" type="text" name="Search" class="search-stock" placeholder="search stocks">
+        <input type="submit" (click)=[onSubmit] value="Search" name="search" placeholder="Search">
+        <!-- <p style="color:white">Value: {{ stockForm.value | json }}</p>
+        <p style="color:white">Value: {{ stockForm.valid | json }}</p>
+        {{submitted}} -->
+      </form>
     </div>
     
     </nav>  
@@ -21,12 +26,13 @@
 <div>
   <h2 class="stock-center">{{title}}</h2>
 </div>
-<div class="container">
-  <form action="/login" method="post">
+<!-- <div class="container">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit" >
     <input type="text" placeholder="Enter your E-mail" name="email" class="Email-login" ><br>
     <input type="password" placeholder="Enter your Password" name="password" class="Password-login" ><br>
     <button class="login" type="submit" class="LogIn-btn">Log in</button>
   </form>
-</div>
-<app-registration></app-registration>
-<app-user-profile></app-user-profile>
+</div> -->
+ <router-outlet></router-outlet>
+<!-- <app-registration></app-registration> --> 
+

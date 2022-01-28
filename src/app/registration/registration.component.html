@@ -1,24 +1,25 @@
+<router-outlet></router-outlet>>
 <div class="container">
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-        <input formControlName="firstName" type="text"  name="First_Name" class="first-name" placeholder="Enter First Name"><br>
+        <input formControlName="name" type="text"  name="First_Name" class="first-name" placeholder="Enter First Name"><br>
         <div class="text-warning">
               <div>
                 First Name is required
               </div>
         </div>
-        <input formControlName="lastName" type="text" name="Last_Name" class="name" placeholder="Enter Last Name"><br>
+        <!-- <input formControlName="lastName" type="text" name="Last_Name" class="name" placeholder="Enter Last Name"><br>
         <div class="text-warning">
               <div>
                 Last Name is required
               </div>
-        </div>
-        <input formControlName="mobNo" type="tel" name="Mobile-no." class="number" placeholder="Enter your phone no."><br>
+        </div> -->
+        <!-- <input formControlName="mobNo" type="tel" name="Mobile-no." class="number" placeholder="Enter your phone no."><br>
         <div class="text-warning">
               <div>
                 Mobile number is required
               </div>
-        </div>
-        <input formControlName="email"type="email" #myname name="email" class="email-registration" placeholder="Enter your email"><br>
+        </div> -->
+        <input formControlName="email" type="email" #myname name="email" class="email-registration" placeholder="Enter your email"><br>
         <div class="text-warning">
               <div>
                 email is required
@@ -30,9 +31,9 @@
                 Password is required
               </div>
         </div>
-        <input type="submit"  value="Register" name="registration" class="registration-btn" placeholder="register">
-        <p class="text-white">Value: {{ registerForm.value | json }}</p>
-        <p class="text-white">Value: {{ registerForm.valid | json }}</p>
+        <input type="submit" (click)=[onSubmit]  value="Register" name="registration" class="registration-btn" placeholder="register">
+        <!-- <p class="text-white">Value: {{ registerForm.value | json }}</p>
+        <p class="text-white">Value: {{ registerForm.valid | json }}</p> -->
     </form>
 </div>
 <!-- <div class="container">

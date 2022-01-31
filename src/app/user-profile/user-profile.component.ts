@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StocksService } from '../core/stocks.service';
 import { Validators , FormBuilder , FormGroup  } from '@angular/forms'; 
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-user-profile',
@@ -13,6 +14,9 @@ export class UserProfileComponent implements OnInit {
   clickedBuy : boolean = false;
   clickedSell : boolean = false;
   clickedMyStocks : boolean = false;
+  clickedUserInfo : boolean = false;
+  stockIds : any ;
+  symbolData: any = [] ;
   stockForm : FormGroup ;
   
 
@@ -26,6 +30,7 @@ export class UserProfileComponent implements OnInit {
   }
   viewStock() {
     this.clickedMyStocks = true;
+    this.clickedUserInfo = false;
     console.log(this.stockForm.value);
     
     
@@ -61,6 +66,29 @@ export class UserProfileComponent implements OnInit {
       return data;
     });
 
+  }
+  getUserStocks () {
+    this.clickedUserInfo=true;
+    this.clickedMyStocks = false;
+    return this.stocks.getStocks().subscribe((data) => {
+      this.stockIds=data['data'];
+      for(let item in data['data']){
+        data['data'][item];
+        console.log(data['data'][item]);
+        // this.symbData.push(this.idToSymb(this.stockIds[item]));
+        this.idToSymb(this.stockIds[item]); 
+      }
+      
+      // console.log(this.symbolData[1]['data']['symbol']);
+      return data;
+    })
+  }
+  idToSymb(id){
+    this.stocks.getStockPerformance( id ).subscribe((symbData)=>{
+      this.symbolData.push(symbData['data']['symbol']);
+      return symbData;
+    })
+    
   }
 
 }

@@ -20,10 +20,11 @@ export class StocksService {
   stoc() {
     const token = 'Bearer '+this.token.getToken();
     this.tokens += token;
+    const userid = this.token.getUser();
     const httpOptions = {
       headers: new HttpHeaders({ 'Authorization': this.tokens })
     };
-    return this.http.get(this.baseUrl,httpOptions ).pipe();
+    return this.http.get(this.baseUrl , httpOptions ).pipe();
   }
   searchStock(name: any) {
     console.log(this.token.getToken());
@@ -63,6 +64,27 @@ export class StocksService {
     };
     const stock_id=id;
     return this.http.put(this.baseUrl+'sell/' + userid +'/'+  quantity['quantity'],stock_id,httpOptions);
+  }
+
+  getStocks () {
+    const b:string=this.token.getToken();
+    this.tokens = 'Bearer '+b;
+    const httpOptions = {
+      headers: new HttpHeaders({ 'authorization': this.tokens })
+    };
+    const user_id = this.token.getUser();
+    console.log(user_id);
+    const data=this.http.post( this.baseUrl+'loggedIn/userInfo' , {user_id} , httpOptions);
+    return data;
+    
+  }
+  getStockPerformance(id:any){
+    const b:string=this.token.getToken();
+    this.tokens = 'Bearer '+b;
+    const httpOptions = {
+      headers: new HttpHeaders({ 'authorization': this.tokens })
+    };
+    return this.http.get(this.baseUrl+id,httpOptions)
   }
   
   

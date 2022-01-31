@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StocksService } from '../core/stocks.service';
 import { Validators , FormBuilder , FormGroup  } from '@angular/forms'; 
-import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-user-profile',
@@ -25,13 +25,13 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit() {
     this.stockForm = this.formBuilder.group({
-      quantity : ["" ]
+      quantity : [ "" ]
     }) 
   }
-  viewStock() {
+  viewStock () {
     this.clickedMyStocks = true;
     this.clickedUserInfo = false;
-    console.log(this.stockForm.value);
+    console.log( this.stockForm.value );
     
     
     this.stocks.stoc().subscribe(async ( serverData ) => {
@@ -47,9 +47,8 @@ export class UserProfileComponent implements OnInit {
     });
 
   }
-  buyStock(id:any) {
+  buyStock( id:any ) {
     this.clickedBuy=true;
-    //console.log(id);
     this.stocks.buyStock(id,this.stockForm.value).subscribe((data)=>{
       alert("Successfully bought");
       return data;
@@ -83,11 +82,11 @@ export class UserProfileComponent implements OnInit {
       return data;
     })
   }
-  idToSymb(id){
+  idToSymb ( id ) {
     this.stocks.getStockPerformance( id ).subscribe((symbData)=>{
       this.symbolData.push(symbData['data']['symbol']);
       return symbData;
-    })
+    } );
     
   }
 

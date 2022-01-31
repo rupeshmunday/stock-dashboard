@@ -55,6 +55,11 @@ export class UserProfileComponent implements OnInit {
   }
   sellStock(id:any) {
     this.clickedSell=true;
+    console.log(this.stockForm.value);
+    this.stocks.sellStock(id, this.stockForm.value).subscribe((data)=>{
+      alert("Successfully sold");
+      return data;
+    });
 
   }
 

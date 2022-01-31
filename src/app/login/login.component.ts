@@ -34,9 +34,13 @@ export class LoginComponent implements OnInit {
     this.stocks.signInUser(this.loginForm.value).subscribe(async ( formData ) => {
       alert("Success sign in\n" + JSON.stringify(this.loginForm.value))
       //console.log(formData['data']['_id']);
+      console.log(formData);
+      
       this.authHeader=formData['accessToken'];
-      this.token.saveToken(this.authHeader);
+      this.token.saveToken(formData['accessToken']);
       this.token.saveUser(formData['data']['_id']);
+      console.log(this.authHeader);
+      
       
       
       return await formData;

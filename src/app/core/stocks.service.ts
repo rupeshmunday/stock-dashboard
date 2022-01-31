@@ -13,12 +13,12 @@ import { TokenStorageService } from '../token-storage.service';
 })
 export class StocksService {
   baseUrl = 'http://localhost:3000/api/stocks/';
-  tokens : any='Bearer ';
+  tokens : any;
   
 
   constructor(private http: HttpClient ,private token : TokenStorageService) { }
   stoc() {
-    const token = this.token.getToken();
+    const token = 'Bearer '+this.token.getToken();
     this.tokens += token;
     const httpOptions = {
       headers: new HttpHeaders({ 'Authorization': this.tokens })
@@ -37,11 +37,13 @@ export class StocksService {
     return this.http.post('http://localhost:3000/register', details);
   }
   buyStock(id , quantity) {
-    this.tokens += this.token.getToken();
+    const b:string=this.token.getToken();
+    this.tokens = 'Bearer '+b;
     const userid = this.token.getUser();
     console.log(userid);
     console.log(id);
     console.log(quantity['quantity']);
+    console.log(this.tokens);
     const httpOptions = {
       headers: new HttpHeaders({ 'authorization': this.tokens })
     };
@@ -49,7 +51,18 @@ export class StocksService {
     return this.http.post(this.baseUrl+'buy/'+userid+'/'+quantity['quantity'],stock_id, httpOptions);
   }
   sellStock(id, quantity) {
-    return this.http.put(this.baseUrl + id +  quantity,id);
+    const b:string=this.token.getToken();
+    this.tokens = 'Bearer '+b;
+    const userid = this.token.getUser();
+    console.log(userid);
+    console.log(id);
+    console.log(quantity['quantity']);
+    console.log(this.tokens);
+    const httpOptions = {
+      headers: new HttpHeaders({ 'authorization': this.tokens })
+    };
+    const stock_id=id;
+    return this.http.put(this.baseUrl+'sell/' + userid +'/'+  quantity['quantity'],stock_id,httpOptions);
   }
   
   

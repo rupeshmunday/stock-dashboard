@@ -12,9 +12,8 @@ export class LoginService implements OnInit {
       
   }
   signInUser( details ) {
-    this.authHeader = this.http.post('http://localhost:3000/login', details );
-    console.log(this.authHeader);
-    return this.authHeader;
+    return this.http.post('http://localhost:3000/login', details );
+     
   }
 
 

@@ -36,9 +36,6 @@ export class UserProfileComponent implements OnInit {
     
     this.stocks.stoc().subscribe(async ( serverData ) => {
       
-      // this.s = serverData;
-      // this.s = serverData['data'][0];
-      // this.s = serverData['data'][0]; 
       this.s = serverData['data'];
       console.log(serverData);
       
@@ -54,10 +51,10 @@ export class UserProfileComponent implements OnInit {
       return data;
     });
   }
-  clickedStock(){
+  clickedStock ( ){
     this.clickedMyStocks = true;
   }
-  sellStock(id:any) {
+  sellStock ( id:any ) {
     this.clickedSell=true;
     console.log(this.stockForm.value);
     this.stocks.sellStock(id, this.stockForm.value).subscribe((data)=>{

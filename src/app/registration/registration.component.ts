@@ -37,10 +37,6 @@ export class RegistrationComponent implements OnInit {
       return await formData;
     });
   }
-  OnReset ( ) {
-    this.submitted = false ;
-    this.registerForm.reset ( ) ;
-  }
   
 
 }

@@ -1,0 +1,66 @@
+{{childMessage}}
+<nav>
+    ...
+</nav>
+<div class="float-right right">
+    <div class="dropdown float-right text-white right">
+        <button class="btn btn-primary dropdown-toggle"
+            type="button" data-toggle="dropdown">
+            <span class="float-right text-white right">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                  </svg>
+                <i class="bi bi-person-circle"></i>
+            </span> 
+        </button>
+        <ul class="text-body">
+            <li><input type="button" value="All Stocks" class="btn btn-lg btn-primary main" (click)="viewStock()"><br></li>
+            <li><input type="button" value="My Stocks" class="btn btn-lg btn-primary main" (click)="getUserStocks()"><br></li>
+        </ul>
+    </div>
+</div>
+<div>
+    <ng-template [ngIf]="clickedAllStocks && !clickedMyStocks">
+        <form [formGroup]="stockForm" (ngSubmit)="clickedMyStocks">
+            <div *ngFor="let item of s; let index=i;">
+                <div >
+                    <button type="submit"  name="test" >{{item.symbol}}</button>
+                    <input formControlName="quantity" type="number" name="quantity" class="quantity">
+                    <input type="submit" value="buyMoreStocks"  (click)="buyStock(item._id)" class="btn btn-primary btn-sm left-bt">
+                    <input type="button" value="sellStocks" (click)="sellStock(item._id)" class="btn btn-primary btn-sm right-bt"><br>
+                </div>
+                
+            </div>
+            <p style="color:white">Value: {{ stockForm.value | json }}
+        </form>
+    </ng-template>
+    <ng-template [ngIf]="!clickedAllStocks && clickedMyStocks">
+        <form [formGroup]="stockForm" (ngSubmit)="clickedUserInfo">
+            <div *ngFor="let item of symbolData; let index=i;">
+                <div >
+                    <button type="submit"   name="test" >{{item}}</button>
+                    <input formControlName="quantity" type="number" name="quantity" class="quantity">
+                    <input type="submit" value="buyMoreStocks" (click)="buyStock(item._id)" class="btn btn-primary btn-sm left-bt">
+                    <input type="button" value="sellStocks" (click)="sellStock(item._id)" class="btn btn-primary btn-sm right-bt"><br>
+                </div>
+                
+            </div>
+            <p style="color:white">Value: {{ stockForm.value | json }}
+        </form>
+    </ng-template>
+    <!-- <div *ngFor="let item of s; let index=i;">
+        {{clickedMyStocks}}
+        {{i}}
+        <h1  style="color: azure;">{{i}}</h1><br> 
+        <h1  style="color: azure;">{{item.symbol}}</h1><br> 
+       <div>
+           <button type="submit" >{{item.symbol}}</button>
+       </div>
+       
+   </div> -->
+    
+    
+    
+</div>
+

@@ -1,38 +1,50 @@
-<div class="nav">
-  <nav>  
-    <ul>  
-    <li>  
-    <a href="#"> Home </a>  
-    </li>  
-    <li>  
-    <a routerLink="/login" routerLinkActive="active"> Login </a>  
-    </li>  
-    <li>  
-    <a routerLink="/register" routerLinkActive="active"> Registration </a>  
-    </li>  
-    </ul>  
-    <div class="search">
-      <form [formGroup]="stockForm" (ngSubmit)="onSubmit()">
-        <input formControlName="search" type="text" name="Search" class="search-stock" placeholder="search stocks">
-        <input type="submit" (click)=[onSubmit] value="Search" name="search" placeholder="Search">
-        <!-- <p style="color:white">Value: {{ stockForm.value | json }}</p>
-        <p style="color:white">Value: {{ stockForm.valid | json }}</p>
-        {{submitted}} -->
-      </form>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="navbar-header text-center">
+    <h2 class="modal-title w-100 text-primary">{{title}}</h2>
+  </div>
+  <a class="text-primary" href="#">Home</a>
+  <button class="navbar-toggler text-primary" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon "></span>
+  </button>
+  <div class=" navbar-collapse " id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link text-primary" routerLink="/login" routerLinkActive="active">Login <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link text-primary" routerLink="/register" routerLinkActive="active">Registration</a>
+      <a class="nav-item nav-link text-primary" routerLink="/search" routerLinkActive="active">Search</a>
     </div>
+  </div>
+  
+</nav>
+<!-- <ng-template [ngIf]="submitted && !content" >
+  <table style="color:white" >
+    <tr >
+      <th>Symbol</th>
+      <th>name</th>
+      <th>type</th>
+      <th>region</th>
+      <th>marketOpen</th>
+      <th>marketClose</th>
+      <th>timezone</th>
+      <th>currency</th>
+      <th>matchScore</th>
+    </tr>
+    <tr *ngFor="let item of data">
+      <td ><button>{{item["1. symbol"]}}</button></td>
+      <td>{{item["2. name"]}}</td>
+      <td>{{item["3. type"]}}</td>
+      <td>{{item["4. region"]}}</td>
+      <td>{{item["5. marketOpen"]}}</td>
+      <td>{{item["6. marketClose"]}}</td>
+      <td>{{item["7. timezone"]}}</td>
+      <td>{{item["8. currency"]}}</td>
+      <td>{{item["9. matchScore"]}}</td>
+    </tr>
+  </table>
+</ng-template> -->
     
-    </nav>  
-</div>
-<div>
-  <h2 class="stock-center">{{title}}</h2>
-</div>
-<!-- <div class="container">
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit" >
-    <input type="text" placeholder="Enter your E-mail" name="email" class="Email-login" ><br>
-    <input type="password" placeholder="Enter your Password" name="password" class="Password-login" ><br>
-    <button class="login" type="submit" class="LogIn-btn">Log in</button>
-  </form>
-</div> -->
+
+
+<!-- <p *ngFor="let item of data" style="color:white" >Value: {{ item.symbol }}</p> -->
  <router-outlet></router-outlet>
 <!-- <app-registration></app-registration> --> 
 

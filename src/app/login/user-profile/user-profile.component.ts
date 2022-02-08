@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { StocksService } from '../core/stocks.service';
+import { Component, OnInit ,Input } from '@angular/core';
+import { StocksService } from '../../core/stocks.service';
 import { Validators , FormBuilder , FormGroup  } from '@angular/forms'; 
 
 
@@ -9,16 +9,16 @@ import { Validators , FormBuilder , FormGroup  } from '@angular/forms';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
-  userName = 'Rupesh';
+  @Input() childMessage : string;
   public s : any ;
   clickedBuy : boolean = false;
   clickedSell : boolean = false;
-  clickedMyStocks : boolean = false;
   clickedUserInfo : boolean = false;
   stockIds : any ;
   symbolData: any = [] ;
   stockForm : FormGroup ;
-  
+  clickedAllStocks : any ;
+  clickedMyStocks : boolean;
 
   constructor( private formBuilder: FormBuilder, private stocks: StocksService ) { }
 
@@ -29,8 +29,8 @@ export class UserProfileComponent implements OnInit {
     }) 
   }
   viewStock () {
-    this.clickedMyStocks = true;
-    this.clickedUserInfo = false;
+    this.clickedAllStocks = true;
+    this.clickedMyStocks = false;
     console.log( this.stockForm.value );
     
     
@@ -64,8 +64,9 @@ export class UserProfileComponent implements OnInit {
 
   }
   getUserStocks () {
-    this.clickedUserInfo=true;
-    this.clickedMyStocks = false;
+    this.clickedMyStocks=true;
+    this.clickedAllStocks=false;
+    // this.clickedMyStocks = false;
     return this.stocks.getStocks().subscribe((data) => {
       this.stockIds=data['data'];
       for(let item in data['data']){

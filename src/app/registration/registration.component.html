@@ -1,11 +1,12 @@
-<router-outlet></router-outlet>>
-<div class="container">
+<router-outlet></router-outlet>
+<main class="form-signup">
+  <div >
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-        <input formControlName="name" type="text"  name="First_Name" class="first-name" placeholder="Enter First Name"><br>
-        <div class="text-warning">
-              <div>
-                First Name is required
-              </div>
+        <input formControlName="name" type="text"  name="First_Name" class="form-control top" placeholder="Enter First Name"><br>
+        <div *ngIf="registerForm.controls['name'].invalid && registerForm.controls['name'].touched" class="text-warning">
+          <div *ngIf="registerForm.controls['name'].errors.required">
+          Name is required.
+          </div>
         </div>
         <!-- <input formControlName="lastName" type="text" name="Last_Name" class="name" placeholder="Enter Last Name"><br>
         <div class="text-warning">
@@ -19,23 +20,25 @@
                 Mobile number is required
               </div>
         </div> -->
-        <input formControlName="email" type="email" #myname name="email" class="email-registration" placeholder="Enter your email"><br>
-        <div class="text-warning">
-              <div>
-                email is required
-              </div>
+        <input formControlName="email" type="email" #myname name="email" class="form-control middle" placeholder="Enter your email"><br>
+        <div *ngIf="registerForm.controls['email'].invalid && registerForm.controls['email'].touched" class="text-warning">
+          <div *ngIf="registerForm.controls['email'].errors.required">
+          E-mail is required.
+          </div>
         </div>
-        <input formControlName="password" type="password" #myname name="password" class="Password-registration" placeholder="Enter your password"><br>
-        <div class="text-warning">
-              <div>
-                Password is required
-              </div>
+        <input formControlName="password" type="password" #myname name="password" class="form-control bottom" placeholder="Enter your password"><br>
+        <div *ngIf="registerForm.controls['password'].invalid && registerForm.controls['password'].touched" class="text-warning">
+          <div *ngIf="registerForm.controls['password'].errors.required">
+          Password is required.
+          </div>
         </div>
-        <input type="submit" (click)=[onSubmit]  value="Register" name="registration" class="registration-btn" placeholder="register">
+        <input type="submit" (click)=[onSubmit]  value="Register" name="registration" class="w-100 btn btn-lg btn-primary" placeholder="register">
         <!-- <p class="text-white">Value: {{ registerForm.value | json }}</p>
         <p class="text-white">Value: {{ registerForm.valid | json }}</p> -->
     </form>
 </div>
+
+</main>
 <!-- <div class="container">
     <div class="card bg-dark text-white m-3 mt-5">
       <h5 class="card-header text-center">

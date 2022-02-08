@@ -33,7 +33,7 @@ export class RegistrationComponent implements OnInit {
     }
     console.log(this.registerForm.value);
     this.stocks.registerUser(this.registerForm.value).subscribe( async ( formData ) => {
-      alert("Success sign up \n " + JSON.stringify ( this.registerForm.value ) );
+      alert( "Success sign up" ) ;
       return await formData;
     });
   }

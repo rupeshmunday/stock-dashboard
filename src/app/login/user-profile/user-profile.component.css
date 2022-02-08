@@ -49,3 +49,17 @@ h1 {
     height: 55px;
     width: 140px;
 }
+.left-bt{
+    margin-right: 2px;
+    margin-left: 2px;
+}
+.main{
+    margin-bottom: 2px;
+
+}
+.quantity{
+    margin-left: 2px;
+}
+.right{
+    margin-right: 10px;
+}

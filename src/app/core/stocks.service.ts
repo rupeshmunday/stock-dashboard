@@ -8,8 +8,9 @@ import { TokenStorageService } from '../token-storage.service';
   providedIn: 'root'
 } )
 export class StocksService {
-  baseUrl = 'http://localhost:3000/api/stocks/';
+  baseUrl = '/api/stocks/';
   tokens : any;
+  keyword : any;
   
 
   constructor ( private http: HttpClient , private token : TokenStorageService ) { }
@@ -23,14 +24,17 @@ export class StocksService {
   }
   searchStock ( name: any ) {
     console.log ( this.token.getToken ( ) );
-    return this.http.get ( this.baseUrl+'search/'+ name );
+    const data= this.http.get ( `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${name}&apikey=demo1` );
+    console.log(data);
+    
+    return data
   }
   registerUser ( details : any) {
     this.tokens += this.token.getToken ( );
     const httpOptions = {
       headers: new HttpHeaders({ 'Authorization': this.tokens })
     };
-    return this.http.post('http://localhost:3000/register', details);
+    return this.http.post('/register', details);
   }
   buyStock ( id , quantity ) {
     const b:string=this.token.getToken ( );
@@ -44,7 +48,7 @@ export class StocksService {
       headers: new HttpHeaders ( { 'authorization': this.tokens } )
     };
     const stock_id=id;
-    return this.http.post(this.baseUrl+'buy/'+userid+'/'+quantity['quantity'],stock_id, httpOptions);
+    return this.http.post( this.baseUrl+'buy/'+ userid +'/'+quantity['quantity'], {stock_id} , httpOptions );
   }
   sellStock ( id, quantity ) {
     const b:string=this.token.getToken ( );
@@ -58,7 +62,9 @@ export class StocksService {
       headers: new HttpHeaders( { 'authorization': this.tokens } )
     };
     const stock_id = id;
-    return this.http.put ( this.baseUrl+'sell/' + userid +'/'+  quantity['quantity'] , stock_id , httpOptions );
+    console.log(stock_id);
+    
+    return this.http.put ( this.baseUrl+'sell/' + userid +'/'+  quantity['quantity'] , {stock_id} , httpOptions );
   }
 
   getStocks ( ) {
@@ -79,7 +85,10 @@ export class StocksService {
     const httpOptions = {
       headers: new HttpHeaders( { 'authorization': this.tokens } )
     };
-    return this.http.get( this.baseUrl+id,httpOptions );
+    return this.http.get( this.baseUrl + id, httpOptions );
+  }
+  getAlphaStocks(symbol:any){
+    return this.http.get(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&outputsize=full&apikey=B0JT9HYQBNUSMJEN`)
   }
   
   

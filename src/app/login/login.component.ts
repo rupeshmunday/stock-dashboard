@@ -9,6 +9,7 @@ import { TokenStorageService } from '../token-storage.service';
   styleUrls: ['./login.component.css']
 } )
 export class LoginComponent implements OnInit {
+  message = "message from login";
   loginForm : FormGroup ;
   submitted = false;
   isLoggedIn = false;
@@ -28,21 +29,23 @@ export class LoginComponent implements OnInit {
     }
     console.log( this.loginForm.value );
     console.log ( this.loginForm );
+    this.isLoggedIn = false;
     
     this.stocks.signInUser ( this.loginForm.value ).subscribe ( async ( formData ) => {
-      alert ("Success sign in\n" + JSON.stringify( this.loginForm.value ) )
+      alert ("Success sign in\n" );
       console.log ( formData );
       
       this.authHeader=formData[ 'accessToken' ];
       this.token.saveToken ( formData['accessToken'] );
       this.token.saveUser ( formData['data']['_id'] );
       console.log ( this.authHeader );
+      console.log(formData['data']['_id']);
       
+      this.isLoggedIn = true;
       
       
       return await formData;
     });
-    this.isLoggedIn = true;
     this.submitted = true;
     
     

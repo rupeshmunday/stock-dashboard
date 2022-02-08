@@ -1,10 +1,15 @@
-<div class="container" >
+<ng-template [ngIf]=!isLoggedIn>
+  <main class="form-signin" >
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit" >
-      <input formControlName="email" type="text" placeholder="Enter your E-mail" name="email" class="Email-login" ><br>
-      <input formControlName="password" type="password" placeholder="Enter your Password" name="password" class="Password-login" ><br>
-      <button (click)=[onSubmit()] class="login" type="submit" class="LogIn-btn">Log in</button>
+      <input formControlName="email" type="email" class="form-control top"  placeholder="Enter Your Email" name="email">
+      <input formControlName="password" type="password" placeholder="Enter your Password" name="password" class="form-control bottom" ><br>
+      <button (click)=[onSubmit()] class="w-100 btn btn-lg btn-primary" type="submit">Log in</button>
       <!-- <p style="color:white">Value: {{ loginForm.value | json }}</p>
       <p style="color:white">Value: {{ loginForm.valid | json }}</p>
       {{submitted}} -->
     </form>
-  </div>
+  </main>
+</ng-template>
+<ng-template [ngIf]=isLoggedIn ><app-user-profile [childMessage]="message" ></app-user-profile></ng-template>
+
+    
